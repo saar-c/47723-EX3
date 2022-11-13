@@ -1,4 +1,10 @@
 :root {
+  --font-family: "SF Pro Text",
+    "SF Pro Icons",
+    "Helvetica Neue",
+    "Helvetica",
+    "Arial",
+    sans-serif;
   --deep-blue: rgb(49, 11, 218);
   --deep-red: rgb(239, 6, 72);
   --white: #fbfafa;
@@ -101,8 +107,7 @@
 }
 
 body {
-  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
-    "Arial", sans-serif;
+  font-family: var(--font-family);
   margin: 0;
   padding: 0;
   color: var(--charcoal);
@@ -114,8 +119,29 @@ a {
 
 input,
 textarea,
-button {
+button,
+select {
   display: block;
+  height: 2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.25rem;
+  border: 1px solid var(--charcoal);
+}
+
+textarea {
+  height: 4rem;
+}
+
+button {
+  height: 2.5rem;
+}
+
+form>* {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  font-family: var(--font-family);
 }
 
 .control select {
