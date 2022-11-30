@@ -1,21 +1,26 @@
 import useSWR from "swr";
-import { API_GAMES_ENDPOINT, API_TEAMS_ENDPOINT } from "../config";
+import { API_BASE } from "../config";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-export function useTeamData() {
-  const { data, error } = useSWR(API_TEAMS_ENDPOINT, fetcher)
-  return {
-    data,
-    isLoading: !error && !data,
-    isError: error
+export function useData(config) {
+  const url = new URL(API_BASE);
+  for (const key in config) {
+    url.searchParams.append(key, config[key]);
   }
-}
+  const urlString = url.toString().replaceAll('%2C', ',');
+  const { data, error } = useSWR(urlString, fetcher);
 
-export function useGameData(year) {
-  const { data, error } = useSWR(`${API_GAMES_ENDPOINT};year=${year}`, fetcher)
+  let forecast = new Array((data?.daily?.time)?.length).fill(null).map(() => new Object());
+  
+  for (const key in data?.daily) {
+    for (let i = 0; i < data?.daily[key].length; ++i) {
+      forecast[i][key] = data?.daily[key][i];
+    }
+  }
+
   return {
-    data,
+    forecast,
     isLoading: !error && !data,
     isError: error
   }

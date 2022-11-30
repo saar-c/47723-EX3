@@ -1,20 +1,18 @@
 import Link from "next/link";
 
-export default function Navbar() {
+export default function Header() {
   return (
-    <div id="navbar">
+    <div id="header">
       <div className="container">
-        <div className="row navbar-items">
-          <div className="item navbar-logo">
+        <div className="row header-items">
+          <div className="item header-logo">
             <div className="content">
-              <Link href="/">Australian Football</Link>
+              <Link href="/">Jerusalem Weather</Link>
             </div>
           </div>
-          <div className="item navbar-menu">
+          <div className="item header-menu">
             <div className="content">
               <ul>
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/about">About</Link></li>
                 <li><Link href="/contact">Contact</Link></li>
               </ul>
             </div>
